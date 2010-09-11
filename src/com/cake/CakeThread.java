@@ -35,8 +35,8 @@ class CakeThread extends Thread {
 			try {
 				c = surfaceHolder.lockCanvas(null);
 				synchronized (surfaceHolder) {
-			//		calcBallPos();
-				//	view.updateBall((int)ballx, (int)bally);
+					calcBallPos();
+					view.updateBall((int)ballx, (int)bally);
 					view.onDraw(c);
 				}
 			} finally {
