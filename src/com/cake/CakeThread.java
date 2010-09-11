@@ -1,11 +1,12 @@
 package com.cake;
 
-import android.view.SurfaceHolder;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.SurfaceHolder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +14,28 @@ class CakeThread extends Thread {
 	private SurfaceHolder surfaceHolder;
 	private CakeView view;
 	private boolean isRunning = false;
+
+
 	
 	private Ball ball;
 	private Paddle paddle;
 	private List<Body> bricks;
 
 	private final float dt = 0.1f;
+	private Bitmap bitmapBackground;
+	private Paint paintBackground;
+
 	public CakeThread(SurfaceHolder surfaceHolder, CakeView panel, Context context) {
+		bitmapBackground = BitmapFactory.decodeResource(context.getResources(), R.drawable.background);
+		paintBackground = new Paint();
+
  	    bricks = new ArrayList<Body>(10);
-		ball = new Ball(0,0, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ball));
+		bricks.add(new Brick(10, 10, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.brick1)));
+		ball = new Ball(50,50, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ball));
 		ball.vel_x = 5;
 		ball.vel_y = 10;
 		paddle = new Paddle(120, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.paddel_basic));
+		paddle.vel_x = 3;
 		this.surfaceHolder = surfaceHolder;
 		view = panel;
 	}
@@ -42,7 +53,12 @@ class CakeThread extends Thread {
 			try {
 				c = surfaceHolder.lockCanvas(null);
 				synchronized (surfaceHolder) {
+					//c.drawBitmap(bitmapBackground, 0, 0, paintBackground);
 					c.drawRGB(0,0,0);
+					for (Body b : bricks) {
+						b.update(dt);
+						b.draw(c);
+					}
 					paddle.update(dt);
 					paddle.draw(c);
 					ball.update(dt);
@@ -71,5 +87,13 @@ class CakeThread extends Thread {
 		paddle.handleWalls(240,320);
 
 		// Handle collisions between ball-paddle and ball-bricks
+		float ball_middle_x = ball.pos_x + ball.getWidth();
+		float ball_middle_y = ball.pos_y + ball.getHeight();
+
+		// Is ball colliding with paddle?
+		if (ball.pos_y + ball.getHeight() >= paddle.pos_y && 
+			ball.pos_x < paddle.pos_x + paddle.getWidth() &&
+			ball.pos_x > paddle.pos_x)
+			ball.vel_y *= -1;
 	}
 }
