@@ -21,13 +21,8 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 	public CakeView(Context context) {
 		super(context);
 		getHolder().addCallback(this);
-		thread = new CakeThread(getHolder(), this);
-		bitmapBall = BitmapFactory.decodeResource(context.getResources(), R.drawable.ball);
+		thread = new CakeThread(getHolder(), this, context);
 		initPaints();
-		Ball ball = new Ball(50,50, circlePaint, bitmapBall);
-		ball.vel_x = 5;
-		ball.vel_y = 2;
-		thread.addBody(ball); 
 	}
 
 	private void initPaints() {
@@ -41,10 +36,8 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		canvas.drawRGB(0,0,0);
 		canvas.save();
 		canvas.translate(ballx,bally);
-		canvas.drawBitmap(bitmapBall, 0, 0, circlePaint);
 		canvas.restore();
 		canvas.drawText("X: " + Accelerometer.getX() + "\nY: " + Accelerometer.getY(), 100, 200, textPaint);
 	}

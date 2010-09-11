@@ -1,10 +1,14 @@
 package com.cake; 
 
+import android.graphics.Paint;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+
 public class Paddle extends Body {
 		private int friction = 10;
 
-		public Paddle() {
-		//		setPos(120,300);
+		public Paddle(float pos_x, Paint paint, Bitmap bitmap) {
+			super(pos_x, 300, paint, bitmap);
 		}
 
 		/* Friction will increase/decrease the speed of the paddle
