@@ -115,8 +115,8 @@ class CakeThread extends Thread {
 				bricks.remove(b);
 				break;
 			}else  if ((ball.pos_x < b.pos_x + b.getWidth() && ball.pos_x + ball.getWidth() > b.pos_x ) &&
-			  	ball.pos_y < b.pos_y + b.getHeight() &&
-				ball.pos_y > b.pos_y) {
+			  	ball_middle_y < b.pos_y + b.getHeight() &&
+				ball_middle_y > b.pos_y) {
 				ball.vel_x *= -1;
 				bricks.remove(b);
 				break;
