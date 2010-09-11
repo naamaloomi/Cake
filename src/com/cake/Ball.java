@@ -23,4 +23,8 @@ public class Ball extends Body{
 
 	}	
 
+	public boolean isAtBottom(int bot) {
+		return pos_x >= bot;
+	}
+
 }

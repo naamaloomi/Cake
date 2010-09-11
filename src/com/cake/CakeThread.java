@@ -30,6 +30,7 @@ class CakeThread extends Thread {
 	public CakeThread(SurfaceHolder surfaceHolder, CakeView panel, Context context) {
 		bitmapBackground = BitmapFactory.decodeResource(context.getResources(), R.drawable.background);
 		bitmapWon = BitmapFactory.decodeResource(context.getResources(), R.drawable.cake);
+		bitmapLost = BitmapFactory.decodeResource(context.getResources(), R.drawable.lost);
 		paintBackground = new Paint();
 
  	    bricks = new ArrayList<Body>(10);
@@ -74,6 +75,9 @@ class CakeThread extends Thread {
 
 					handleCollisions();
 
+					if (ball.isAtBottom(320))
+						isRunning = false;
+
 					if (bricks.size() == 0){
 						won = true;
 						isRunning = false;
@@ -91,6 +95,8 @@ class CakeThread extends Thread {
 		c.drawBitmap(bitmapBackground, 0, 0, paintBackground);
 		if (won) 
 			c.drawBitmap(bitmapWon, 0, 0, paintBackground);
+		else
+			c.drawBitmap(bitmapLost, 0, 0, paintBackground);
 	}
 
 	private void calcBallPos() {
