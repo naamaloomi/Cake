@@ -36,9 +36,9 @@ class CakeThread extends Thread {
 				bricks.add(new Brick(0+ i *40 , 30 + j*10, p, BitmapFactory.decodeResource(context.getResources(), R.drawable.brick1)));
 			}
 		}
-		ball = new Ball(50,50, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ball));
-		ball.vel_x = 10;
-		ball.vel_y = 20;
+		ball = new Ball(200,200, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ball));
+		ball.vel_x = -10;
+		ball.vel_y = -20;
 		paddle = new Paddle(120, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.paddel_basic));
 		paddle.vel_x = 3;
 		this.surfaceHolder = surfaceHolder;
@@ -110,10 +110,17 @@ class CakeThread extends Thread {
 			// Top or Bottom of brick
 			if ((ball.pos_y < b.pos_y + b.getHeight() && ball.pos_y + ball.getHeight() > b.pos_y ) &&
 			  	ball.pos_x < b.pos_x + b.getWidth() &&
-			  	ball.pos_x > b.pos_x) {
+			ball.pos_x > b.pos_x) {
 				ball.vel_y *= -1;
 				bricks.remove(b);
 				break;
+			}else  if ((ball.pos_x < b.pos_x + b.getWidth() && ball.pos_x + ball.getWidth() > b.pos_x ) &&
+			  	ball.pos_y < b.pos_y + b.getHeight() &&
+				ball.pos_y > b.pos_y) {
+				ball.vel_x *= -1;
+				bricks.remove(b);
+				break;
+
 			}
 
 			// Left side
