@@ -75,4 +75,12 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 			}
 		}
 	}
+
+	public int getBallWidth() {
+		return bitmapBall.getWidth();
+	}
+
+	public int getBallHeight() {
+		return bitmapBall.getHeight();
+	}
 }

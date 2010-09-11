@@ -54,9 +54,9 @@ class CakeThread extends Thread {
 		ballx = ballx + ballVelx * dt;
 		bally = bally + ballVely * dt;
 
-		if (ballx < 10 || ballx > 230)
+		if (ballx <= 0 || ballx > (240 - view.getBallWidth()))
 			ballVelx *= -1;
-		if (bally < 10 || bally > 320)
+		if (bally <= 0 || bally > (320 - view.getBallHeight()))
 			ballVely *= -1;
 	}
 }
