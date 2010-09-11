@@ -24,12 +24,7 @@ public class Paddle extends Body {
 		public void update(float dt) {
 				float input_x = Accelerometer.getX();
 
-				/* Needs to be possible to keep paddle still,
-				   so we'll won't move on smaller values */
-				if(input_x > 0.4 || input_x < -0.4) {
-					this.vel_x = input_x * friction;
-				}
-
+				this.vel_x = input_x * friction;
 				pos_x -= vel_x * dt;
 		}
 

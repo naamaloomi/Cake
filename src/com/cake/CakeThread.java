@@ -58,8 +58,7 @@ class CakeThread extends Thread {
 			try {
 				c = surfaceHolder.lockCanvas(null);
 				synchronized (surfaceHolder) {
-					//c.drawBitmap(bitmapBackground, 0, 0, paintBackground);
-					c.drawRGB(0,0,0);
+					c.drawBitmap(bitmapBackground, 0, 0, paintBackground);
 					for (Body b : bricks) {
 						b.update(dt);
 						b.draw(c);
