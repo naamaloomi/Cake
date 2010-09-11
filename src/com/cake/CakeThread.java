@@ -1,11 +1,13 @@
 package com.cake;
 
-import android.view.SurfaceHolder;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.SurfaceHolder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +15,27 @@ class CakeThread extends Thread {
 	private SurfaceHolder surfaceHolder;
 	private CakeView view;
 	private boolean isRunning = false;
+
+
 	
 	private Ball ball;
 	private Paddle paddle;
 	private List<Body> bricks;
 
 	private final float dt = 0.1f;
+	private Bitmap bitmapBackground;
+	private Paint paintBackground;
+
 	public CakeThread(SurfaceHolder surfaceHolder, CakeView panel, Context context) {
+		bitmapBackground = BitmapFactory.decodeResource(context.getResources(), R.drawable.background);
+		paintBackground = new Paint();
+
  	    bricks = new ArrayList<Body>(10);
 		ball = new Ball(50,50, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ball));
 		ball.vel_x = 5;
 		ball.vel_y = 10;
 		paddle = new Paddle(120, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.paddel_basic));
+
 		this.surfaceHolder = surfaceHolder;
 		view = panel;
 	}
@@ -42,7 +53,7 @@ class CakeThread extends Thread {
 			try {
 				c = surfaceHolder.lockCanvas(null);
 				synchronized (surfaceHolder) {
-					c.drawRGB(0,0,0);
+					c.drawBitmap(bitmapBackground, 0, 0, paintBackground);
 					paddle.update(dt);
 					paddle.draw(c);
 					ball.update(dt);
