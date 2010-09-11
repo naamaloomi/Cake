@@ -31,16 +31,14 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 		circlePaint.setAntiAlias(true);
 		circlePaint.setStyle(Style.STROKE);
 		circlePaint.setStrokeWidth(20);
-		textPaint.setARGB(0, 0, 255, 0);
-		textPaint.setTextSize(8);
+		textPaint.setARGB(255, 0, 0, 255);
+		textPaint.setTextSize(16);
 	}
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		
 		canvas.drawBitmap(bitmapBall, ballx, bally, circlePaint);
-		canvas.drawText("X: " + Accelerometer.getX(), 0, 0, textPaint);
-		canvas.drawText("Y: " + Accelerometer.getY(), 0, 10, textPaint);
+		canvas.drawText("X: " + Accelerometer.getX() + "\nY: " + Accelerometer.getY(), 100, 200, textPaint);
 	}
 
 	public void updateBall(int x, int y) {
