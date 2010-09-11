@@ -95,5 +95,27 @@ class CakeThread extends Thread {
 			ball.pos_x < paddle.pos_x + paddle.getWidth() &&
 			ball.pos_x > paddle.pos_x)
 			ball.vel_y *= -1;
+
+		// Is ball colliding with left side of paddle?
+
+		// Is ball colliding with right side of paddle?
+		
+		// Is ball colliding with bricks?
+		List<Body> removeList = new ArrayList<Body>();
+		for (Body b : bricks) {
+			// Top or Bottom of brick
+			if ((ball.pos_y > b.pos_y + b.getHeight() || ball.pos_y + ball.getHeight() > b.pos_y ) &&
+			  	ball.pos_x < b.pos_x + b.getWidth() &&
+			  	ball.pos_x > b.pos_x) {
+				ball.vel_y *= -1;
+				removeList.add(b);
+				break;
+			}
+			// Left side
+			
+			// Right side
+		}
+		
+		// Is ball colliding with side of bricks?
 	}
 }
