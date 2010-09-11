@@ -7,6 +7,8 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.os.Handler;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 	private CakeThread thread;
@@ -14,11 +16,13 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 	private int bally;
 	private Paint circlePaint = new Paint();
 	private Paint textPaint = new Paint();
+	private Bitmap bitmapBall;
 
 	public CakeView(Context context) {
 		super(context);
 		getHolder().addCallback(this);
 		thread = new CakeThread(getHolder(), this);
+		bitmapBall = BitmapFactory.decodeResource(context.getResources(), R.drawable.ball);
 		initPaints();
 	}
 
@@ -33,8 +37,8 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		canvas.drawColor(0);
-		canvas.drawCircle(ballx, bally, 10, circlePaint);
+		
+		canvas.drawBitmap(bitmapBall, ballx, bally, circlePaint);
 		canvas.drawText("X: " + Accelerometer.getX(), 0, 0, textPaint);
 		canvas.drawText("Y: " + Accelerometer.getY(), 0, 10, textPaint);
 	}
