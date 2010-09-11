@@ -92,11 +92,16 @@ class CakeThread extends Thread {
 				}
 			}
 		}
-		c.drawBitmap(bitmapBackground, 0, 0, paintBackground);
+		try {
+		c = surfaceHolder.lockCanvas(null);
+		c.drawBitmap(bitmapBackground, 0, 0, new Paint());
 		if (won) 
-			c.drawBitmap(bitmapWon, 0, 0, paintBackground);
+			c.drawBitmap(bitmapWon, 0, 0, new Paint());
 		else
 			c.drawBitmap(bitmapLost, 0, 0, paintBackground);
+		} finally {
+			surfaceHolder.unlockCanvasAndPost(c);
+		}
 	}
 
 	private void calcBallPos() {
