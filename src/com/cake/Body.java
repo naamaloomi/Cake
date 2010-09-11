@@ -11,8 +11,8 @@ public abstract class Body {
 	public float acc_x;
 	public float acc_y;
 
-	private Bitmap bitmap;
-	private Paint paint;
+	protected Bitmap bitmap;
+	protected Paint paint;
 
 	public Body(float pos_x, float pos_y, Paint paint, Bitmap bitmap)  {
 		this.paint = paint;
