@@ -10,6 +10,8 @@ import android.os.Handler;
 
 class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 	private CakeThread thread;
+	private int ballx;
+	private int bally;
 
 	public CakeView(Context context) {
 		super(context);
@@ -24,9 +26,12 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 		circlePaint.setAntiAlias(true);
 		circlePaint.setStyle(Style.STROKE);
 		circlePaint.setStrokeWidth(20);
-		canvas.drawCircle(50, 50, 10, circlePaint);
+		canvas.drawCircle(ballx, ballx, 10, circlePaint);
+	}
 
-
+	public void updateBall(int x, int y) {
+		ballx = x;
+		bally = y;
 	}
 
 	@Override

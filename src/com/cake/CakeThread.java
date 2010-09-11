@@ -7,9 +7,19 @@ class CakeThread extends Thread {
 	private CakeView view;
 	private boolean isRunning = false;
 
+	private float ballx;
+	private float bally;
+	private float ballVelx;
+	private float ballVely;
+	private final float dt = 0.1f;
+
 	public CakeThread(SurfaceHolder surfaceHolder, CakeView panel) {
-		surfaceHolder = surfaceHolder;
+		this.surfaceHolder = surfaceHolder;
 		view = panel;
+		ballx = 50;
+		bally = 50;
+		ballVelx = 10;
+		ballVely = 10;
 	}
 
 	public void setRunning(boolean r) {
@@ -18,12 +28,15 @@ class CakeThread extends Thread {
 
 	@Override
 	public void run() {
+		isRunning = true;
 		Canvas c;
 		while (isRunning) {
 			c = null;
 			try {
 				c = surfaceHolder.lockCanvas(null);
 				synchronized (surfaceHolder) {
+			//		calcBallPos();
+				//	view.updateBall((int)ballx, (int)bally);
 					view.onDraw(c);
 				}
 			} finally {
@@ -35,5 +48,15 @@ class CakeThread extends Thread {
 				}
 			}
 		}
+	}
+
+	private void calcBallPos() {
+		ballx = ballx + ballVelx * dt;
+		bally = bally + ballVely * dt;
+
+		if (ballx < 10 || ballx > 230)
+			ballVelx *= -1;
+		if (bally < 10 || bally > 320)
+			ballVely *= -1;
 	}
 }
