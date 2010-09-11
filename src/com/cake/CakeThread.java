@@ -34,10 +34,14 @@ class CakeThread extends Thread {
 			try {
 				c = surfaceHolder.lockCanvas(null);
 				synchronized (surfaceHolder) {
-					calcBallPos();
+					c.drawRGB(0,0,0);
+					for (Body b:bodies) {
+						b.update(dt);
+						b.draw(c);
+					}
+
 					handleCollisions();
-					view.updateBall((int)ball.pos_x, (int)ball.pos_y);
-					view.onDraw(c);
+
 				}
 			} finally {
 				// do this in a finally so that if an exception is thrown
@@ -55,11 +59,8 @@ class CakeThread extends Thread {
 	}
 
 	private void handleCollisions() {
-	
-		if (ball.pos_x <= 0 || ball.pos_x > (240 - view.getBallWidth()))
-			ball.vel_x *= -1;
-		if (ball.pos_y <= 0 || ball.pos_y > (320 - view.getBallHeight()))
-			ball.vel_y *= -1;
-	
+		for (Body b:bodies) {
+			b.handleWalls(240,320);
+		}	
 	}
 }
