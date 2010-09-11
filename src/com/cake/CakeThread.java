@@ -75,7 +75,7 @@ class CakeThread extends Thread {
 
 					handleCollisions();
 
-					if (ball.isAtBottom(315))
+					if (ball.isAtBottom(310))
 						isRunning = false;
 
 					if (bricks.size() == 0){
@@ -96,9 +96,9 @@ class CakeThread extends Thread {
 		c = surfaceHolder.lockCanvas(null);
 		c.drawBitmap(bitmapBackground, 0, 0, new Paint());
 		if (won) 
-			c.drawBitmap(bitmapWon, 0, 0, new Paint());
+			c.drawBitmap(bitmapWon, (240-bitmapWon.getWidth())/2, 100, new Paint());
 		else
-			c.drawBitmap(bitmapLost, 0, 0, paintBackground);
+			c.drawBitmap(bitmapLost, (240-bitmapLost.getWidth())/2, 70, new Paint());
 		} finally {
 			surfaceHolder.unlockCanvasAndPost(c);
 		}
