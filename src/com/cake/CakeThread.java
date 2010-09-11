@@ -30,7 +30,12 @@ class CakeThread extends Thread {
 		paintBackground = new Paint();
 
  	    bricks = new ArrayList<Body>(10);
-		bricks.add(new Brick(10, 10, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.brick1)));
+		Paint p = new Paint();
+		for (int j =0; j < 6; j++) {
+			for (int i =0; i< 6 ; i++) {
+				bricks.add(new Brick(0+ i *40 , 30 + j*10, p, BitmapFactory.decodeResource(context.getResources(), R.drawable.brick1)));
+			}
+		}
 		ball = new Ball(50,50, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ball));
 		ball.vel_x = 10;
 		ball.vel_y = 20;
@@ -108,9 +113,10 @@ class CakeThread extends Thread {
 			  	ball.pos_x < b.pos_x + b.getWidth() &&
 			  	ball.pos_x > b.pos_x) {
 				ball.vel_y *= -1;
-				removeList.add(b);
+				bricks.remove(b);
 				break;
 			}
+
 			// Left side
 			
 			// Right side
