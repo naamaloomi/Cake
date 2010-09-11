@@ -16,9 +16,9 @@ public class Ball extends Body{
 	}
 
 	public void handleWalls(int x_max, int y_max) {
-		if (pos_x <= 0 || pos_x > (x_max - bitmap.getWidth()))
+		if (pos_x <= 0 || pos_x >= (x_max - bitmap.getWidth()))
 			vel_x *= -1;
-		if (pos_y <= 0 || pos_y > (y_max - bitmap.getHeight()))
+		if (pos_y <= 0 || pos_y >= (y_max - bitmap.getHeight()))
 			vel_y *= -1;
 
 	}	
