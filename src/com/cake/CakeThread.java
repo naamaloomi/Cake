@@ -1,6 +1,8 @@
 package com.cake;
 import android.view.SurfaceHolder;
 import android.graphics.Canvas;
+import java.util.ArrayList;
+import java.util.List;
 
 class CakeThread extends Thread {
 	private SurfaceHolder surfaceHolder;
@@ -8,16 +10,16 @@ class CakeThread extends Thread {
 	private boolean isRunning = false;
 	private Ball ball;
 	private final float dt = 0.1f;
-
+	private List<Body> bodies;
 	public CakeThread(SurfaceHolder surfaceHolder, CakeView panel) {
+ 	    bodies = new ArrayList<Body>(10);
 		this.surfaceHolder = surfaceHolder;
 		view = panel;
-		ball = new Ball(); 
-		ball.pos_x = 50;
-		ball.pos_y = 50;
-		ball.vel_x = 5;
-		ball.vel_y = 10;
 	}
+
+	public void addBody(Body body) {
+		bodies.add(body);
+	}	
 
 	public void setRunning(boolean r) {
 		isRunning = r;

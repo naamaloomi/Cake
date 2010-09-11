@@ -24,6 +24,7 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 		thread = new CakeThread(getHolder(), this);
 		bitmapBall = BitmapFactory.decodeResource(context.getResources(), R.drawable.ball);
 		initPaints();
+		Ball  ball = new Ball(50,50, circlePaint, bitmapBall);
 	}
 
 	private void initPaints() {
