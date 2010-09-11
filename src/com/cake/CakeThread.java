@@ -32,8 +32,8 @@ class CakeThread extends Thread {
  	    bricks = new ArrayList<Body>(10);
 		bricks.add(new Brick(10, 10, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.brick1)));
 		ball = new Ball(50,50, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ball));
-		ball.vel_x = 5;
-		ball.vel_y = 10;
+		ball.vel_x = 10;
+		ball.vel_y = 20;
 		paddle = new Paddle(120, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.paddel_basic));
 		paddle.vel_x = 3;
 		this.surfaceHolder = surfaceHolder;
@@ -104,7 +104,7 @@ class CakeThread extends Thread {
 		List<Body> removeList = new ArrayList<Body>();
 		for (Body b : bricks) {
 			// Top or Bottom of brick
-			if ((ball.pos_y > b.pos_y + b.getHeight() || ball.pos_y + ball.getHeight() > b.pos_y ) &&
+			if ((ball.pos_y < b.pos_y + b.getHeight() && ball.pos_y + ball.getHeight() > b.pos_y ) &&
 			  	ball.pos_x < b.pos_x + b.getWidth() &&
 			  	ball.pos_x > b.pos_x) {
 				ball.vel_y *= -1;
