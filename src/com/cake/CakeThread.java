@@ -75,7 +75,7 @@ class CakeThread extends Thread {
 
 					handleCollisions();
 
-					if (ball.isAtBottom(320))
+					if (ball.isAtBottom(315))
 						isRunning = false;
 
 					if (bricks.size() == 0){
