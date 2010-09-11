@@ -37,7 +37,11 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		canvas.drawBitmap(bitmapBall, ballx, bally, circlePaint);
+		canvas.drawRGB(0,0,0);
+		canvas.save();
+		canvas.translate(ballx,bally);
+		canvas.drawBitmap(bitmapBall, 0, 0, circlePaint);
+		canvas.restore();
 		canvas.drawText("X: " + Accelerometer.getX() + "\nY: " + Accelerometer.getY(), 100, 200, textPaint);
 	}
 
