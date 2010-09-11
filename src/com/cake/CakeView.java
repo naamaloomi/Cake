@@ -16,6 +16,7 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 	private int bally;
 	private Paint textPaint = new Paint();
 	private Bitmap bitmapBall;
+	private Bitmap bitmapBackground;
 
 	public CakeView(Context context) {
 		super(context);
