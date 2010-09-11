@@ -21,7 +21,7 @@ class CakeThread extends Thread {
 	private final float dt = 0.1f;
 	public CakeThread(SurfaceHolder surfaceHolder, CakeView panel, Context context) {
  	    bricks = new ArrayList<Body>(10);
-		ball = new Ball(50,50, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ball));
+		ball = new Ball(0,0, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ball));
 		ball.vel_x = 5;
 		ball.vel_y = 10;
 		paddle = new Paddle(120, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.paddel_basic));
