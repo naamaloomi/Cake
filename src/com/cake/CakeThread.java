@@ -3,37 +3,37 @@ import android.view.SurfaceHolder;
 import android.graphics.Canvas;
 
 class CakeThread extends Thread {
-	private SurfaceHolder _surfaceHolder;
+	private SurfaceHolder surfaceHolder;
 	private CakeView view;
-	private boolean _run = false;
+	private boolean isRunning = false;
 
 	public CakeThread(SurfaceHolder surfaceHolder, CakeView panel) {
-		_surfaceHolder = surfaceHolder;
+		surfaceHolder = surfaceHolder;
 		view = panel;
 	}
 
-	public void setRunning(boolean run) {
-		_run = run;
+	public void setRunning(boolean r) {
+		isRunning = r;
 	}
 
 	@Override
-		public void run() {
-			Canvas c;
-			while (_run) {
-				c = null;
-				try {
-					c = _surfaceHolder.lockCanvas(null);
-					synchronized (_surfaceHolder) {
-						view.onDraw(c);
-					}
-				} finally {
-					// do this in a finally so that if an exception is thrown
-					// during the above, we don't leave the Surface in an
-					// inconsistent state
-					if (c != null) {
-						_surfaceHolder.unlockCanvasAndPost(c);
-					}
+	public void run() {
+		Canvas c;
+		while (isRunning) {
+			c = null;
+			try {
+				c = surfaceHolder.lockCanvas(null);
+				synchronized (surfaceHolder) {
+					view.onDraw(c);
+				}
+			} finally {
+				// do this in a finally so that if an exception is thrown
+				// during the above, we don't leave the Surface in an
+				// inconsistent state
+				if (c != null) {
+					surfaceHolder.unlockCanvasAndPost(c);
 				}
 			}
 		}
+	}
 }
