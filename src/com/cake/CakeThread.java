@@ -18,7 +18,7 @@ class CakeThread extends Thread {
 		view = panel;
 		ballx = 50;
 		bally = 50;
-		ballVelx = 10;
+		ballVelx = 5;
 		ballVely = 10;
 	}
 
