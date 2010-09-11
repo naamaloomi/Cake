@@ -36,11 +36,7 @@ class CakeThread extends Thread {
 		ball.vel_x = 5;
 		ball.vel_y = 10;
 		paddle = new Paddle(120, new Paint(), BitmapFactory.decodeResource(context.getResources(), R.drawable.paddel_basic));
-<<<<<<< HEAD
-
-=======
-		ball.vel_x = 3;
->>>>>>> 7cfd3af293811ba3e364a95b1068bd6537549d9d
+		paddle.vel_x = 3;
 		this.surfaceHolder = surfaceHolder;
 		view = panel;
 	}
@@ -58,15 +54,11 @@ class CakeThread extends Thread {
 			try {
 				c = surfaceHolder.lockCanvas(null);
 				synchronized (surfaceHolder) {
-<<<<<<< HEAD
 					c.drawBitmap(bitmapBackground, 0, 0, paintBackground);
-=======
-					c.drawRGB(0,0,0);
 					for (Body b : bricks) {
 						b.update(dt);
 						b.draw(c);
 					}
->>>>>>> 7cfd3af293811ba3e364a95b1068bd6537549d9d
 					paddle.update(dt);
 					paddle.draw(c);
 					ball.update(dt);
