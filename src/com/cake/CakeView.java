@@ -27,6 +27,8 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 		circlePaint.setStyle(Style.STROKE);
 		circlePaint.setStrokeWidth(20);
 		canvas.drawCircle(ballx, ballx, 10, circlePaint);
+		canvas.drawText("X: " + Accelerometer.getX(), 0, 0, circlePaint);
+		canvas.drawText("Y: " + Accelerometer.getX(), 0, 10, circlePaint);
 	}
 
 	public void updateBall(int x, int y) {
