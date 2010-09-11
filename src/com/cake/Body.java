@@ -37,4 +37,6 @@ public abstract class Body {
 	public void setPaint(Paint paint) {
 		this.paint = paint;	
 	}
+
+	public abstract void handleWalls(int x_max, int y_max);
 }
