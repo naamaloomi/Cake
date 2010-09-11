@@ -36,7 +36,7 @@ public final class Accelerometer {
 	}
 
     public static float getX() {
-    	return x;
+    	return (x + 0.9f);
     }
     
     public static float getY() {
