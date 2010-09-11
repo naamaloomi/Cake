@@ -39,5 +39,13 @@ public abstract class Body {
 		this.paint = paint;	
 	}
 
+	public int getWidth() {
+		return bitmap.getWidth();
+	}
+
+	public int getHeight() {
+		return bitmap.getHeight();
+	}
+
 	public abstract void handleWalls(int x_max, int y_max);
 }

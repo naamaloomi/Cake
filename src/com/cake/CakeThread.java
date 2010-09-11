@@ -87,5 +87,13 @@ class CakeThread extends Thread {
 		paddle.handleWalls(240,320);
 
 		// Handle collisions between ball-paddle and ball-bricks
+		float ball_middle_x = ball.pos_x + ball.getWidth();
+		float ball_middle_y = ball.pos_y + ball.getHeight();
+
+		// Is ball colliding with paddle?
+		if (ball.pos_y + ball.getHeight() >= paddle.pos_y && 
+			ball.pos_x < paddle.pos_x + paddle.getWidth() &&
+			ball.pos_x > paddle.pos_x)
+			ball.vel_y *= -1;
 	}
 }
