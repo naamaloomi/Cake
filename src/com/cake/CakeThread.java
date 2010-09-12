@@ -122,7 +122,7 @@ class CakeThread extends Thread {
 			ball.pos_x < paddle.pos_x + paddle.getWidth() &&
 			ball.pos_x > paddle.pos_x) {
 				ball.vel_y *= -1;
-				CakeActivity.vibrator.vibrate((long) 10);
+				CakeActivity.vibrator.vibrate((long) 40);
 		}
 
 		// Is ball colliding with left side of paddle?
@@ -137,14 +137,14 @@ class CakeThread extends Thread {
 			  	ball.pos_x < b.pos_x + b.getWidth() &&
 			ball.pos_x > b.pos_x) {
 				ball.vel_y *= -1;
-				CakeActivity.vibrator.vibrate((long) 10);
+				CakeActivity.vibrator.vibrate((long) 70);
 				bricks.remove(b);
 				break;
 			}else  if ((ball.pos_x < b.pos_x + b.getWidth() && ball.pos_x + ball.getWidth() > b.pos_x ) &&
 			  	ball_middle_y < b.pos_y + b.getHeight() &&
 				ball_middle_y > b.pos_y) {
 				ball.vel_x *= -1;
-				CakeActivity.vibrator.vibrate((long) 10);
+				CakeActivity.vibrator.vibrate((long) 70);
 				bricks.remove(b);
 				break;
 
