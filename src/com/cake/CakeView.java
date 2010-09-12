@@ -4,8 +4,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.graphics.Canvas;
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.Paint.Style;
 import android.os.Handler;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,20 +12,14 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 	private CakeThread thread;
 	private int ballx;
 	private int bally;
-	private Paint textPaint = new Paint();
 	private Bitmap bitmapBall;
 	private Bitmap bitmapBackground;
+	private boolean started = false;
 
 	public CakeView(Context context) {
 		super(context);
 		getHolder().addCallback(this);
 		thread = new CakeThread(getHolder(), this, context);
-		initPaints();
-	}
-
-	private void initPaints() {
-		textPaint.setARGB(255, 0, 0, 255);
-		textPaint.setTextSize(16);
 	}
 
 	public void updateBall(int x, int y) {
@@ -41,8 +33,11 @@ class CakeView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 
 	public void surfaceCreated(SurfaceHolder holder) {
-		thread.setRunning(true);
-		thread.start();
+		if (!started) {
+			thread.setRunning(true);
+			thread.start();
+			started = true;
+		}
 	}
 
 	public void surfaceDestroyed(SurfaceHolder holder) {
