@@ -15,4 +15,6 @@
     </application>
 
 	    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+
+		<uses-sdk android:minSdkVersion="3" />
 </manifest> 
