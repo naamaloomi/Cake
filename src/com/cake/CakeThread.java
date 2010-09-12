@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Vibrator;
 import android.view.SurfaceHolder;
 
 import java.util.ArrayList;
@@ -119,8 +120,10 @@ class CakeThread extends Thread {
 		// Is ball colliding with paddle?
 		if (ball.pos_y + ball.getHeight() >= paddle.pos_y && 
 			ball.pos_x < paddle.pos_x + paddle.getWidth() &&
-			ball.pos_x > paddle.pos_x)
-			ball.vel_y *= -1;
+			ball.pos_x > paddle.pos_x) {
+				ball.vel_y *= -1;
+				CakeActivity.vibrator.vibrate((long) 10);
+		}
 
 		// Is ball colliding with left side of paddle?
 
@@ -134,12 +137,14 @@ class CakeThread extends Thread {
 			  	ball.pos_x < b.pos_x + b.getWidth() &&
 			ball.pos_x > b.pos_x) {
 				ball.vel_y *= -1;
+				CakeActivity.vibrator.vibrate((long) 10);
 				bricks.remove(b);
 				break;
 			}else  if ((ball.pos_x < b.pos_x + b.getWidth() && ball.pos_x + ball.getWidth() > b.pos_x ) &&
 			  	ball_middle_y < b.pos_y + b.getHeight() &&
 				ball_middle_y > b.pos_y) {
 				ball.vel_x *= -1;
+				CakeActivity.vibrator.vibrate((long) 10);
 				bricks.remove(b);
 				break;
 

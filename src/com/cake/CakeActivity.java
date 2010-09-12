@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.Window;
@@ -17,6 +18,8 @@ import android.view.WindowManager;
  
 public class CakeActivity extends Activity
 {
+	public static Vibrator vibrator;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class CakeActivity extends Activity
 		super.onResume();
 
 		SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		this.vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 		Accelerometer.start(sensorManager);
 	}
 
